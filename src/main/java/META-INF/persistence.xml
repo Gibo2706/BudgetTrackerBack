@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    <persistence-unit name="localDB" transaction-type="RESOURCE_LOCAL">
+
+        <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+        <properties>
+            <!-- enable warnings for debugging -->
+            <property name="openjpa.Log" value="DefaultLevel=TRACE, Runtime=INFO, Tool=INFO, SQL=TRACE"/>
+            <!-- connection properties -->
+            <property name="openjpa.ConnectionURL" value="jdbc:postgresql://aws-0-eu-central-1.pooler.supabase.com:5432/postgres"/>
+            <property name="openjpa.ConnectionDriverName" value="org.postgresql.Driver"/>
+            <property name="openjpa.ConnectionUserName" value="postgres.jlxibachcgmfobzwoaxj"/>
+            <property name="openjpa.ConnectionPassword" value="PMFProjects123!.!"/>
+
+        </properties>
+    </persistence-unit>
+</persistence>
