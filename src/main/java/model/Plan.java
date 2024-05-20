@@ -2,6 +2,8 @@ package model;
 
 import java.io.Serializable;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -25,17 +27,17 @@ public class Plan implements Serializable {
 	private String name;
 
 	//bi-directional many-to-one association to Korisnik
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "\"korisnikId\"", insertable = false, updatable = false, referencedColumnName = "\"id\"")
 	private Korisnik korisnik;
 
 	//bi-directional many-to-one association to Prihod
-	@OneToMany(mappedBy="plan")
-	private List<Prihod> prihods;
+	@OneToMany(mappedBy="plan", cascade = CascadeType.ALL)
+	private List<Prihod> prihods = new ArrayList<>();
 
 	//bi-directional many-to-one association to Trosak
-	@OneToMany(mappedBy="plan")
-	private List<Trosak> trosaks;
+	@OneToMany(mappedBy="plan", cascade = CascadeType.ALL)
+	private List<Trosak> trosaks = new ArrayList<>();
 
 	public Plan() {
 	}

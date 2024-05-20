@@ -29,7 +29,7 @@ public class Trosak implements Serializable {
 	private Long planId;
 
 	//bi-directional many-to-one association to Plan
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "\"planId\"", insertable = false, updatable = false, referencedColumnName = "\"id\"")
 	private Plan plan;
 

@@ -6,4 +6,5 @@ import model.Korisnik;
 
 public interface KorisnikRepo extends JpaRepository<Korisnik, Long> {
 
+	Korisnik findByUsername(String username);
 }

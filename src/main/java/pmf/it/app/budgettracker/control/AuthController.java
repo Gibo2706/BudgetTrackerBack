@@ -18,13 +18,7 @@ public class AuthController {
 	@GetMapping("/login")
 	public ResponseEntity<String> logIn(){
 		String res = "Logged   !\n";
-		Korisnik k = new Korisnik();
-		k.setName("John");
-		k.setLastname("Doe");
-		k.setEmail("test@gmail.com");
-		k.setPassword("123456");
-		k.setUsername("johndoe");
-		kr.save(k);
+		
 		System.out.println(kr.count());
 		for (Korisnik kz : kr.findAll())
 			res += kz.toString() + "\n";

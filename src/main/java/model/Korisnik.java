@@ -30,11 +30,11 @@ public class Korisnik implements Serializable {
 	private String username;
 
 	//bi-directional many-to-one association to Plan
-	@OneToMany(mappedBy="korisnik")
+	@OneToMany(mappedBy="korisnik", cascade = CascadeType.ALL)
 	private List<Plan> plans;
 
 	//bi-directional many-to-one association to Prihod
-	@OneToMany(mappedBy="korisnik")
+	@OneToMany(mappedBy="korisnik", cascade = CascadeType.ALL)
 	private List<Prihod> prihods;
 
 	public Korisnik() {
@@ -130,6 +130,12 @@ public class Korisnik implements Serializable {
 		prihod.setKorisnik(null);
 
 		return prihod;
+	}
+	
+	@Override
+	public String toString() {
+		return "Korisnik [id=" + id + ", email=" + email + ", lastname=" + lastname + ", name=" + name + ", password="
+				+ password + ", username=" + username + ", plans=" + plans + ", prihods=" + prihods + "]";
 	}
 
 }
