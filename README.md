@@ -82,7 +82,8 @@ For detailed API documentation, refer to the Swagger documentation provided in t
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
-Acknowledgements
+
+## Acknowledgements
 
     Special thanks to the faculty for providing the opportunity to work on this project.
     Thanks to the contributors and the open-source community for their valuable resources and support.
