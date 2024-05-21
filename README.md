@@ -70,9 +70,8 @@ The backend provides various API endpoints to interact with the BudgetTracker mo
     DELETE /plan/delete/{id}: Delete a budget plan
 
 For detailed API documentation, refer to the Swagger documentation provided in the project.
-Contributing
-
-Contributions are welcome! If you have any suggestions or improvements, please create an issue or submit a pull request.
+## Contributing
+   Contributions are welcome! If you have any suggestions or improvements, please create an issue or submit a pull request.
 
     Fork the project
     Create your feature branch (git checkout -b feature/YourFeature)
