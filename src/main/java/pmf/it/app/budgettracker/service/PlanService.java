@@ -1,15 +1,17 @@
 package pmf.it.app.budgettracker.service;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pmf.it.app.budgettracker.dto.Plan;
-import pmf.it.app.budgettracker.dto.Prihod;
-import pmf.it.app.budgettracker.dto.Trosak;
+import model.Plan;
+import model.Korisnik;
+import model.Prihod;
+import model.Trosak;
+import pmf.it.app.budgettracker.dto.PlanDTO;
+import pmf.it.app.budgettracker.dto.PrihodDTO;
+import pmf.it.app.budgettracker.dto.TrosakDTO;
 import pmf.it.app.budgettracker.repository.KorisnikRepo;
 import pmf.it.app.budgettracker.repository.PlanRepo;
 import pmf.it.app.budgettracker.repository.PrihodRepo;
@@ -29,11 +31,11 @@ public class PlanService {
 	@Autowired
 	private PrihodRepo pir;
 	
-	public boolean addPlan(Plan plan) {
-		model.Plan p = new model.Plan();
+	public boolean addPlan(PlanDTO plan) {
+		Plan p = new Plan();
 		System.out.println(plan);
 		System.out.println(plan.korisnik());
-		model.Korisnik korisnik = kr.findByUsername(plan.korisnik().username());
+		Korisnik korisnik = kr.findByUsername(plan.korisnik().username());
 		System.out.println(korisnik);
 		p.setKorisnik(korisnik);
 		p.setKorisnikId(korisnik.getId());
@@ -41,16 +43,17 @@ public class PlanService {
 		p = pr.save(p);
 		
 		if (p != null) {
-			for(Trosak t : plan.troskovi()) {
-				model.Trosak trosak = new model.Trosak();
+			for(TrosakDTO t : plan.troskovi()) {
+				Trosak trosak = new Trosak();
 	            trosak.setAmount(new BigDecimal(t.amount()));
 	            trosak.setName(t.name());
+	            trosak.setIsimpulse(t.isImpulse());
 	            trosak.setPlan(p);
 	            tr.save(trosak);
 			}
 			
-			for (Prihod prihod : plan.prihodi()) {
-				model.Prihod p1 = new model.Prihod();
+			for (PrihodDTO prihod : plan.prihodi()) {
+				Prihod p1 = new Prihod();
 				p1.setAmount(new BigDecimal(prihod.amount()));
 				p1.setKorisnik(p.getKorisnik());
 				p1.setKorisnikId(p.getKorisnikId());

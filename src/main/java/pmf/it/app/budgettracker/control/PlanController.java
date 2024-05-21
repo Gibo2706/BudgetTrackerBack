@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-import pmf.it.app.budgettracker.dto.Plan;
+import pmf.it.app.budgettracker.dto.PlanDTO;
 import pmf.it.app.budgettracker.service.PlanService;
 
 @RestController
@@ -18,7 +18,7 @@ public class PlanController {
 	private PlanService planService;
 	
 	@PostMapping("add")
-	public ResponseEntity<String> addPlan(@RequestBody Plan plan) {
+	public ResponseEntity<String> addPlan(@RequestBody PlanDTO plan) {
 		System.out.println(plan);
         boolean res =  planService.addPlan(plan);
         
