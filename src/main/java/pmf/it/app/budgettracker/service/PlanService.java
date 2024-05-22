@@ -40,6 +40,7 @@ public class PlanService {
 		p.setKorisnik(korisnik);
 		p.setKorisnikId(korisnik.getId());
 		p.setName(plan.name());
+		p.setGoal(new BigDecimal(plan.cilj().toString()));
 		p = pr.save(p);
 		
 		if (p != null) {

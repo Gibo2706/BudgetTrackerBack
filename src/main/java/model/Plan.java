@@ -1,7 +1,12 @@
 package model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +19,9 @@ import java.util.List;
 @Entity
 @Table(name="\"Plan\"")
 @NamedQuery(name="Plan.findAll", query="SELECT p FROM Plan p")
+@Getter
+@Setter
+@AllArgsConstructor
 public class Plan implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -38,6 +46,8 @@ public class Plan implements Serializable {
 	//bi-directional many-to-one association to Trosak
 	@OneToMany(mappedBy="plan", cascade = CascadeType.ALL)
 	private List<Trosak> trosaks = new ArrayList<>();
+
+	private BigDecimal goal;	
 
 	public Plan() {
 	}
@@ -116,6 +126,14 @@ public class Plan implements Serializable {
 		trosak.setPlan(null);
 
 		return trosak;
+	}
+	
+	public BigDecimal getGoal() {
+		return goal;
+	}
+
+	public void setGoal(BigDecimal goal) {
+		this.goal = goal;
 	}
 
 }

@@ -13,7 +13,9 @@ public record PlanDTO(
 		@JsonProperty("prihodi")
 		List<PrihodDTO> prihodi,
 		@JsonProperty("korisnik")
-		KorisnikDTO korisnik
+		KorisnikDTO korisnik,
+		@JsonProperty("cilj")
+		Number cilj
 	) {
 
 }
