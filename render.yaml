@@ -1,0 +1,11 @@
+# Exported from Render on 2024-05-22T11:17:51Z
+services:
+- type: web
+  name: BudgetTrackerBack
+  runtime: docker
+  repo: https://github.com/Gibo2706/BudgetTrackerBack
+  plan: free
+  region: oregon
+  dockerContext: .
+  dockerfilePath: ./Dockerfile
+version: "1"
