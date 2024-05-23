@@ -1,6 +1,8 @@
 package pmf.it.app.budgettracker.service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +11,7 @@ import model.Plan;
 import model.Korisnik;
 import model.Prihod;
 import model.Trosak;
+import pmf.it.app.budgettracker.dto.KorisnikDTO;
 import pmf.it.app.budgettracker.dto.PlanDTO;
 import pmf.it.app.budgettracker.dto.PrihodDTO;
 import pmf.it.app.budgettracker.dto.TrosakDTO;
@@ -65,6 +68,17 @@ public class PlanService {
 			return true;
 		}
 		return false;
+	}
+	
+	public List<PlanDTO> getAllFor(int userId){
+		List<Plan> plans = pr.findAllByKorisnikId(new Long(userId));
+		List<PlanDTO> planDTOs = new ArrayList<PlanDTO>();
+		for(Plan p : plans) {
+			KorisnikDTO k = new KorisnikDTO(p.getKorisnik().getUsername(), p.getKorisnik().getEmail(), p.getKorisnik().getName(), p.getKorisnik().getLastname());
+			List<Trosak> troskovi = p.getTrosaks();
+			if(troskovi)
+			PlanDTO pdt = new PlanDTO(p.getName(), p.getTrosaks(), p.getPrihods(), k, (Number) p.getGoal().doubleValue());
+		}
 	}
 	
 }
