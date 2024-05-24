@@ -1,7 +1,7 @@
 package pmf.it.app.budgettracker.service;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,15 +70,9 @@ public class PlanService {
 		return false;
 	}
 	
-	public List<PlanDTO> getAllFor(int userId){
-		List<Plan> plans = pr.findAllByKorisnikId(new Long(userId));
-		List<PlanDTO> planDTOs = new ArrayList<PlanDTO>();
-		for(Plan p : plans) {
-			KorisnikDTO k = new KorisnikDTO(p.getKorisnik().getUsername(), p.getKorisnik().getEmail(), p.getKorisnik().getName(), p.getKorisnik().getLastname());
-			List<Trosak> troskovi = p.getTrosaks();
-			if(troskovi)
-			PlanDTO pdt = new PlanDTO(p.getName(), p.getTrosaks(), p.getPrihods(), k, (Number) p.getGoal().doubleValue());
-		}
+	public List<PlanDTO> findAllByUser(Long id) {
+		List<Plan> plans = pr.findAllByKorisnikId(id);
+		return PlanDTO.fromEntityList(plans);
 	}
 	
 }

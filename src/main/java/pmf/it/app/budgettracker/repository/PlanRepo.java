@@ -8,5 +8,6 @@ import model.Plan;
 
 public interface PlanRepo extends JpaRepository<Plan, Long> {
 	
-	List<Plan> findAllByKorisnikId(long korisnikId);
+	List<Plan> findAllByKorisnikId(Long id);
+
 }

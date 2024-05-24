@@ -33,10 +33,14 @@ public class PlanController {
         }
 	}
 	
-	@GetMapping("getAllFor/{id}")
-	public ResponseEntity<List<PlanDTO>> getAllFor(@PathVariable("id") int id){
-		System.out.println(id);
-		
+	@GetMapping("allByUser/{id}")
+	public ResponseEntity<List<PlanDTO>> getAllByUser(@PathVariable("id") Long id) {
+		List<PlanDTO> plans = planService.findAllByUser(id);
+		if(plans.size() == 0) {
+            return ResponseEntity.badRequest().body(null);
+		} else {
+			return ResponseEntity.ok(plans);
+		}
 	}
 	
 }
