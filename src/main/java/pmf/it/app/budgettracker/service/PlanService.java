@@ -1,6 +1,7 @@
 package pmf.it.app.budgettracker.service;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,6 +66,11 @@ public class PlanService {
 			return true;
 		}
 		return false;
+	}
+	
+	public List<PlanDTO> findAllByUser(Long id) {
+		List<Plan> plans = pr.findAllByKorisnikId(id);
+		return PlanDTO.fromEntityList(plans);
 	}
 	
 }

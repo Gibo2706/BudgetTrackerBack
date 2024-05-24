@@ -1,7 +1,11 @@
 package pmf.it.app.budgettracker.control;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +31,16 @@ public class PlanController {
 		} else {
 			return ResponseEntity.badRequest().body("Plan not added");
         }
+	}
+	
+	@GetMapping("allByUser/{id}")
+	public ResponseEntity<List<PlanDTO>> getAllByUser(@PathVariable("id") Long id) {
+		List<PlanDTO> plans = planService.findAllByUser(id);
+		if(plans.size() == 0) {
+            return ResponseEntity.badRequest().body(null);
+		} else {
+			return ResponseEntity.ok(plans);
+		}
 	}
 	
 }
