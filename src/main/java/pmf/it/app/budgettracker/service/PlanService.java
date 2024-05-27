@@ -83,8 +83,13 @@ public class PlanService {
         trosak.setIsimpulse(t.isImpulse());
         trosak.setPlanId(p.getId());
         trosak.setPlan(p);
-        tr.save(trosak);
-		return true;
+        try {
+        	tr.save(trosak);
+    		return true;
+        }catch(Exception e) {
+        	return false;
+        }
+        
 	}
 	
 	public boolean addPrihod(String plan, PrihodDTO prihod) {
@@ -97,8 +102,12 @@ public class PlanService {
 		p1.setName(prihod.name());
 		p1.setPlanId(p.getId());
 		p1.setPlan(p);
-		pir.save(p1);
-		return true;
+		try {
+			pir.save(p1);
+			return true;
+		}catch(Exception e) {
+			return false;
+		}
 	}
 	
 }
