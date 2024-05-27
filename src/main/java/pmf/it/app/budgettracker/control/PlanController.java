@@ -68,7 +68,7 @@ public class PlanController {
 		}
 	}
 	
-	@DeleteMapping("deletePrihod")
+	@PostMapping("deletePrihod")
 	public ResponseEntity<String> deletePrihod(@RequestParam("plan") String plan, @RequestBody PrihodDTO prihod){
 		boolean res = planService.deletePrihod(plan, prihod);
 		if(res) {
@@ -78,7 +78,7 @@ public class PlanController {
 		}
 	}
 	
-	@DeleteMapping("deleteTrosak")
+	@PostMapping("deleteTrosak")
 	public ResponseEntity<String> deleteTrosak(@RequestParam("plan") String plan, @RequestBody TrosakDTO trosak){
 		boolean res = planService.deleteTrosak(plan, trosak);
 		if(res) {
