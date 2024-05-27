@@ -49,6 +49,7 @@ public class PlanService {
 	            trosak.setAmount(new BigDecimal(t.amount()));
 	            trosak.setName(t.name());
 	            trosak.setIsimpulse(t.isImpulse());
+	            trosak.setPlanId(p.getId());
 	            trosak.setPlan(p);
 	            tr.save(trosak);
 			}
@@ -59,6 +60,7 @@ public class PlanService {
 				p1.setKorisnik(p.getKorisnik());
 				p1.setKorisnikId(p.getKorisnikId());
 				p1.setName(prihod.name());
+				p1.setPlanId(p.getId());
 				p1.setPlan(p);
 				pir.save(p1);
 			}
@@ -79,6 +81,7 @@ public class PlanService {
         trosak.setAmount(new BigDecimal(t.amount()));
         trosak.setName(t.name());
         trosak.setIsimpulse(t.isImpulse());
+        trosak.setPlanId(p.getId());
         trosak.setPlan(p);
         tr.save(trosak);
 		return true;
@@ -92,6 +95,7 @@ public class PlanService {
 		p1.setKorisnik(p.getKorisnik());
 		p1.setKorisnikId(p.getKorisnikId());
 		p1.setName(prihod.name());
+		p1.setPlanId(p.getId());
 		p1.setPlan(p);
 		pir.save(p1);
 		return true;
