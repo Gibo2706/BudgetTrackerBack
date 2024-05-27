@@ -15,7 +15,7 @@ public class TickService {
 	private static final String uri = "https://budgettrackerback.onrender.com/api/renew";
 	
 	@Async
-	@Scheduled(cron = "0 */13 * * * *")
+	@Scheduled(cron = "*/13 * * * *")
 	public void renew() throws InterruptedException {
 		HttpURLConnection connection = null;
         try {
