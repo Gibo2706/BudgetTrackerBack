@@ -5,5 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import model.Trosak;
 
 public interface TrosakRepo extends JpaRepository<Trosak, Long> {
-
+	
+	Trosak findByNameAndPlanId(String name, long id);
 }

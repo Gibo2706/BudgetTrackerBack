@@ -110,4 +110,32 @@ public class PlanService {
 		}
 	}
 	
+	public boolean deleteTrosak(String plan, TrosakDTO t) {
+		Plan p = pr.findByName(plan);
+		if(p == null) return false;
+		Trosak trosak = tr.findByNameAndPlanId(t.name(), p.getId());
+		if(trosak == null) return false;
+		try {
+			tr.delete(trosak);
+			tr.flush();
+			return true;
+		}catch(Exception e) {
+			return false;
+		}
+	}
+	
+	public boolean deletePrihod(String plan, PrihodDTO prih) {
+		Plan p = pr.findByName(plan);
+		if(p == null) return false;
+		Prihod prihod = pir.findByNameAndPlanId(prih.name(), p.getId());
+		if(prihod == null) return false;
+		try {
+			pir.delete(prihod);
+			pir.flush();
+			return true;
+		}catch(Exception e) {
+			return false;
+		}
+	}
+	
 }

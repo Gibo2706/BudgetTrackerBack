@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -64,6 +65,26 @@ public class PlanController {
 			return ResponseEntity.ok("Prihod added successfuly");
 		}else {
 			return ResponseEntity.badRequest().body("Prihod not added");
+		}
+	}
+	
+	@DeleteMapping("deletePrihod")
+	public ResponseEntity<String> deletePrihod(@RequestParam("plan") String plan, @RequestBody PrihodDTO prihod){
+		boolean res = planService.deletePrihod(plan, prihod);
+		if(res) {
+			return ResponseEntity.ok("Prihod removed successfuly");
+		}else {
+			return ResponseEntity.badRequest().body("Prihod not removed");
+		}
+	}
+	
+	@DeleteMapping("deleteTrosak")
+	public ResponseEntity<String> deleteTrosak(@RequestParam("plan") String plan, @RequestBody TrosakDTO trosak){
+		boolean res = planService.deleteTrosak(plan, trosak);
+		if(res) {
+			return ResponseEntity.ok("Trosak removed successfuly");
+		}else {
+			return ResponseEntity.badRequest().body("Trosak not removed");
 		}
 	}
 }
