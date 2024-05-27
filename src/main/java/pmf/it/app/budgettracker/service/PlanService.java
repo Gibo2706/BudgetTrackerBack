@@ -129,8 +129,7 @@ public class PlanService {
 		Trosak trosak = tr.findByNameAndPlanId(t.name(), p.getId());
 		if(trosak == null) return false;
 		try {
-			tr.delete(trosak);
-			tr.flush();
+			tr.deleteById(trosak.getId());
 			return true;
 		}catch(Exception e) {
 			return false;
@@ -143,8 +142,7 @@ public class PlanService {
 		Prihod prihod = pir.findByNameAndPlanId(prih.name(), p.getId());
 		if(prihod == null) return false;
 		try {
-			pir.delete(prihod);
-			pir.flush();
+			pir.deleteById(prihod.getId());
 			return true;
 		}catch(Exception e) {
 			return false;
