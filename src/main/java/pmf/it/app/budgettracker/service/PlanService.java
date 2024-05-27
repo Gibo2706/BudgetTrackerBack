@@ -36,10 +36,7 @@ public class PlanService {
 	
 	public boolean addPlan(PlanDTO plan) {
 		Plan p = new Plan();
-		System.out.println(plan);
-		System.out.println(plan.korisnik());
 		Korisnik korisnik = kr.findByUsername(plan.korisnik().username());
-		System.out.println(korisnik);
 		p.setKorisnik(korisnik);
 		p.setKorisnikId(korisnik.getId());
 		p.setName(plan.name());
@@ -73,6 +70,31 @@ public class PlanService {
 	public List<PlanDTO> findAllByUser(Long id) {
 		List<Plan> plans = pr.findAllByKorisnikId(id);
 		return PlanDTO.fromEntityList(plans);
+	}
+	
+	public boolean addTrosak(String plan, TrosakDTO t) {
+		Plan p = pr.findByName(plan);
+		if(p == null) return false;
+		Trosak trosak = new Trosak();
+        trosak.setAmount(new BigDecimal(t.amount()));
+        trosak.setName(t.name());
+        trosak.setIsimpulse(t.isImpulse());
+        trosak.setPlan(p);
+        tr.save(trosak);
+		return true;
+	}
+	
+	public boolean addPrihod(String plan, PrihodDTO prihod) {
+		Plan p = pr.findByName(plan);
+		if(p == null) return false;
+		Prihod p1 = new Prihod();
+		p1.setAmount(new BigDecimal(prihod.amount()));
+		p1.setKorisnik(p.getKorisnik());
+		p1.setKorisnikId(p.getKorisnikId());
+		p1.setName(prihod.name());
+		p1.setPlan(p);
+		pir.save(p1);
+		return true;
 	}
 	
 }
