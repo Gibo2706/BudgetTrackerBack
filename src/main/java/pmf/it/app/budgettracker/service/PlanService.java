@@ -11,7 +11,6 @@ import model.Plan;
 import model.Korisnik;
 import model.Prihod;
 import model.Trosak;
-import pmf.it.app.budgettracker.dto.KorisnikDTO;
 import pmf.it.app.budgettracker.dto.PlanDTO;
 import pmf.it.app.budgettracker.dto.PrihodDTO;
 import pmf.it.app.budgettracker.dto.TrosakDTO;
@@ -41,6 +40,7 @@ public class PlanService {
 		p.setKorisnikId(korisnik.getId());
 		p.setName(plan.name());
 		p.setGoal(new BigDecimal(plan.cilj().toString()));
+		p.setTimePeriod(plan.timePeriod());
 		p = pr.save(p);
 		
 		if (p != null) {
@@ -72,6 +72,19 @@ public class PlanService {
 	public List<PlanDTO> findAllByUser(Long id) {
 		List<Plan> plans = pr.findAllByKorisnikId(id);
 		return PlanDTO.fromEntityList(plans);
+	}
+	
+	public boolean addGoal(String plan, Number goal, Long timePeriod) {
+		Plan p = pr.findByName(plan);
+		if(p == null) return false;
+		p.setGoal(new BigDecimal(goal.toString()));
+		p.setTimePeriod(timePeriod);
+		try {
+			pr.saveAndFlush(p);
+			return true;
+		}catch(Exception e) {
+			return false;
+		}
 	}
 	
 	public boolean addTrosak(String plan, TrosakDTO t) {

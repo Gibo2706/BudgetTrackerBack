@@ -48,6 +48,9 @@ public class Plan implements Serializable {
 	private List<Trosak> trosaks = new ArrayList<>();
 
 	private BigDecimal goal;	
+	
+	@Column(name="\"time_period\"")
+	private Long timePeriod;
 
 	public Plan() {
 	}
@@ -136,4 +139,12 @@ public class Plan implements Serializable {
 		this.goal = goal;
 	}
 
+	public Long getTimePeriod() {
+		return timePeriod;
+	}
+
+	public void setTimePeriod(Long timePeriod) {
+		this.timePeriod = timePeriod;
+	}
+	
 }

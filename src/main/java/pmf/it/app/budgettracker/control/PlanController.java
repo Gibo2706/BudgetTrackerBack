@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -66,6 +65,15 @@ public class PlanController {
 		}else {
 			return ResponseEntity.badRequest().body("Prihod not added");
 		}
+	}
+	
+	@PutMapping("addGoal")
+	public ResponseEntity<String> setGoal(@RequestParam("plan") String plan, @RequestParam("goal") Number goal, @RequestParam("timePeriod") long timePeriod){
+		boolean res = planService.addGoal(plan, goal, timePeriod);
+		if(res)
+			return ResponseEntity.ok("Goal is set");
+		else
+			return ResponseEntity.badRequest().body("There was an error setting goal");
 	}
 	
 	@PostMapping("deletePrihod")

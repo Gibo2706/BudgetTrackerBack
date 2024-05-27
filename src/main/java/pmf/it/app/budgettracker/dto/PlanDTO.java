@@ -21,7 +21,9 @@ public record PlanDTO(
 		@JsonProperty("korisnik")
 		KorisnikDTO korisnik,
 		@JsonProperty("cilj")
-		Number cilj
+		Number cilj,
+		@JsonProperty("timePeriod")
+		Long timePeriod
 	) {
 
 	public static List<PlanDTO> fromEntityList(List<Plan> plans) {
@@ -37,7 +39,7 @@ public record PlanDTO(
 			for (Prihod prihod : p.getPrihods()) {
 				pDtos.add(new PrihodDTO(prihod.getName(), prihod.getAmount().doubleValue()));
 			}
-			res.add(new PlanDTO(p.getName(), tDtos, pDtos, korisnik, p.getGoal()));
+			res.add(new PlanDTO(p.getName(), tDtos, pDtos, korisnik, p.getGoal(), p.getTimePeriod()));
 		}
 		return res;
 	}
