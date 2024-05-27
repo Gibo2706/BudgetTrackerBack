@@ -35,16 +35,16 @@ public class Plan implements Serializable {
 	private String name;
 
 	//bi-directional many-to-one association to Korisnik
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "\"korisnikId\"", insertable = false, updatable = false, referencedColumnName = "\"id\"")
 	private Korisnik korisnik;
 
 	//bi-directional many-to-one association to Prihod
-	@OneToMany(mappedBy="plan", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="plan", cascade = CascadeType.PERSIST)
 	private List<Prihod> prihods = new ArrayList<>();
 
 	//bi-directional many-to-one association to Trosak
-	@OneToMany(mappedBy="plan", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="plan", cascade = CascadeType.PERSIST)
 	private List<Trosak> trosaks = new ArrayList<>();
 
 	private BigDecimal goal;	

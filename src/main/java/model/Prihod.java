@@ -30,12 +30,12 @@ public class Prihod implements Serializable {
 	private Long planId;
 
 	//bi-directional many-to-one association to Korisnik
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "\"korisnikId\"", insertable = false, updatable = false, referencedColumnName = "\"id\"")
 	private Korisnik korisnik;
 
 	//bi-directional many-to-one association to Plan
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "\"planId\"", insertable = false, updatable = false, referencedColumnName = "\"id\"")
 	private Plan plan;
 
