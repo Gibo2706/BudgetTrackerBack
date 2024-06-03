@@ -49,7 +49,7 @@ public class KorisnikService {
 		token.setToken(UUID.randomUUID().toString());
 		ts.saveConfirmationToken(token);
 		
-		return new ResponseDTO("Successfully", encPass);
+		return new ResponseDTO("Successfully", token.getToken());
 	}
 
 	private String hashPassword(String encPass) throws NoSuchAlgorithmException {
@@ -58,5 +58,24 @@ public class KorisnikService {
 		byte[] digest = md.digest();
 		String hash =  DatatypeConverter.printHexBinary(digest).toUpperCase();
 		return hash;
+	}
+	
+	public ResponseDTO logIn(String username, String password) {
+		Korisnik k = kr.findByUsername(username);
+		if(Objects.isNull(k)) throw new RuntimeException("user is not valid!");
+		try {
+			if(!k.getPassword().equals(hashPassword(password)))
+				throw new RuntimeException("wrong password!");
+			
+		}catch(NoSuchAlgorithmException ex) {
+			ex.printStackTrace();
+		}
+		Token token = ts.getToken(k);
+		
+		if (Objects.isNull(token)) {
+            throw new RuntimeException("token is not present");
+        }
+		
+		return new ResponseDTO("Successfully", token.getToken());
 	}
 }

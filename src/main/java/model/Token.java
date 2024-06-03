@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "token")
-@NamedQuery(name="Korisnik.findAll", query="SELECT t FROM Token t")
+@NamedQuery(name="Token.findAll", query="SELECT t FROM Token t")
 public class Token implements Serializable{
 
 	private static final long serialVersionUID = 1L;
