@@ -24,10 +24,10 @@ public class TokenInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
+		if(request.getRequestURI().contains("auth") || request.getRequestURI().contains("api")) return true;
 		String token = request.getHeader("token");
 		tokenHolder.setToken(token);
 		tokenHolder.setKorisnik(ks.findByUsername(request.getHeader("user")));
-		if(request.getRequestURI().contains("auth")) return true;
 		Token tok = ts.getToken(tokenHolder.getKorisnik());
 		if(Objects.isNull(tok))
 			throw new RuntimeException("bad user");
