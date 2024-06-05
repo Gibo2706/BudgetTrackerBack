@@ -35,7 +35,8 @@ public class Token implements Serializable{
 	@Column(name = "created_date")
 	private Date createdDate;
 	
-	@OneToOne(targetEntity = Korisnik.class, fetch = FetchType.EAGER, mappedBy = "id")
+	@OneToOne()
+	@JoinColumn(name = "\"korisnik\"", referencedColumnName = "\"id\"")
 	private Korisnik korisnik;
 
 	public Long getId() {

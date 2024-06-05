@@ -2,6 +2,9 @@ package model;
 
 import java.io.Serializable;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
 
@@ -12,6 +15,8 @@ import java.util.List;
 @Entity
 @Table(name="\"Korisnik\"")
 @NamedQuery(name="Korisnik.findAll", query="SELECT k FROM Korisnik k")
+@Getter
+@Setter
 public class Korisnik implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -36,6 +41,9 @@ public class Korisnik implements Serializable {
 	//bi-directional many-to-one association to Prihod
 	@OneToMany(mappedBy="korisnik", cascade = CascadeType.PERSIST)
 	private List<Prihod> prihods;
+	
+	@OneToOne(mappedBy = "korisnik")
+	private Token token;
 
 	public Korisnik() {
 	}
