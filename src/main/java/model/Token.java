@@ -35,12 +35,8 @@ public class Token implements Serializable{
 	@Column(name = "created_date")
 	private Date createdDate;
 	
-	@Column(name="korisnik")
-	private Long korisnikId;
-
-	@OneToOne(targetEntity = Korisnik.class, fetch = FetchType.EAGER)
-	@JoinColumn(nullable = false, name = "korisnikId", insertable = false, updatable = false)
-	private Korisnik korisnikClass;
+	@OneToOne(targetEntity = Korisnik.class, fetch = FetchType.EAGER, mappedBy = "korisnik")
+	private Korisnik korisnik;
 
 	public Long getId() {
 		return id;
@@ -58,12 +54,12 @@ public class Token implements Serializable{
 		this.createdDate = createdDate;
 	}
 
-	public Korisnik getKorisnikClass() {
-		return korisnikClass;
+	public Korisnik getKorisnik() {
+		return korisnik;
 	}
 
-	public void setKorisnikClass(Korisnik korisnik) {
-		this.korisnikClass = korisnik;
+	public void setKorisnik(Korisnik korisnik) {
+		this.korisnik = korisnik;
 	}
 
 	public String getToken() {
