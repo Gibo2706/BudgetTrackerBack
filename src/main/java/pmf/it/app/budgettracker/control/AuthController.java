@@ -20,9 +20,8 @@ public class AuthController {
 	private KorisnikService ks;
 	
 	@GetMapping("/login")
-	public ResponseEntity<String> logIn(){
-		String res = "Logged   !\n";
-		return ResponseEntity.ok(res);
+	public ResponseEntity<ResponseDTO> logIn(String username, String password){
+		return ResponseEntity.ok(ks.logIn(username, password));
 	}
 	
 	@PostMapping("/register")

@@ -14,6 +14,7 @@ import model.Korisnik;
 import model.Token;
 import pmf.it.app.budgettracker.dto.RegisterDTO;
 import pmf.it.app.budgettracker.dto.ResponseDTO;
+import pmf.it.app.budgettracker.interceptor.TokenHolder;
 import pmf.it.app.budgettracker.repository.KorisnikRepo;
 
 @Service
@@ -23,6 +24,9 @@ public class KorisnikService {
 	
 	@Autowired
 	TokenService ts;
+	
+	@Autowired
+	TokenHolder tokenHolder;
 	
 	@Transactional
 	public ResponseDTO signUp(RegisterDTO regUser) {
@@ -77,5 +81,9 @@ public class KorisnikService {
         }
 		
 		return new ResponseDTO("Successfully", token.getToken());
+	}
+	
+	public Korisnik findByUsername(String username) {
+		return kr.findByUsername(username);
 	}
 }
