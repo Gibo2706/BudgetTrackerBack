@@ -22,7 +22,6 @@ import lombok.Setter;
 @NamedQuery(name="Token.findAll", query="SELECT t FROM Token t")
 @Getter
 @Setter
-@AllArgsConstructor
 public class Token implements Serializable{
 
 	private static final long serialVersionUID = 1L;
