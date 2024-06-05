@@ -49,7 +49,7 @@ public class KorisnikService {
 		k = kr.save(k);
 		
 		Token token = new Token();
-		token.setKorisnik(k);
+		token.setKorisnikClass(k);
 		token.setToken(UUID.randomUUID().toString());
 		ts.saveConfirmationToken(token);
 		

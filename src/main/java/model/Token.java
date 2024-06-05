@@ -13,10 +13,16 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "token")
 @NamedQuery(name="Token.findAll", query="SELECT t FROM Token t")
+@Getter
+@Setter
+@AllArgsConstructor
 public class Token implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -30,9 +36,12 @@ public class Token implements Serializable{
 	@Column(name = "created_date")
 	private Date createdDate;
 	
+	@Column(name="korisnik")
+	private Long korisnik;
+
 	@OneToOne(targetEntity = Korisnik.class, fetch = FetchType.EAGER)
 	@JoinColumn(nullable = false, name = "korsinik")
-	private Korisnik korisnik;
+	private Korisnik korisnikClass;
 
 	public Long getId() {
 		return id;
@@ -50,12 +59,12 @@ public class Token implements Serializable{
 		this.createdDate = createdDate;
 	}
 
-	public Korisnik getKorisnik() {
-		return korisnik;
+	public Korisnik getKorisnikClass() {
+		return korisnikClass;
 	}
 
-	public void setKorisnik(Korisnik korisnik) {
-		this.korisnik = korisnik;
+	public void setKorisnikClass(Korisnik korisnik) {
+		this.korisnikClass = korisnik;
 	}
 
 	public String getToken() {
