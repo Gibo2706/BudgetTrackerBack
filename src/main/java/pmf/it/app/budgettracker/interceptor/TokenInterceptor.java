@@ -24,7 +24,9 @@ public class TokenInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		if(request.getRequestURI().contains("auth") || request.getRequestURI().contains("api")) return true;
+		String url = request.getRequestURI();
+		System.out.println(url);
+		if(url.contains("auth") || url.contains("api") || url.contains("swagger")) return true;
 		String token = request.getHeader("token");
 		tokenHolder.setToken(token);
 		tokenHolder.setKorisnik(ks.findByUsername(request.getHeader("user")));
