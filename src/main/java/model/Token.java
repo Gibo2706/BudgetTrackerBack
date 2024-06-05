@@ -36,10 +36,10 @@ public class Token implements Serializable{
 	private Date createdDate;
 	
 	@Column(name="korisnik")
-	private Long korisnik;
+	private Long korisnikId;
 
 	@OneToOne(targetEntity = Korisnik.class, fetch = FetchType.EAGER)
-	@JoinColumn(nullable = false, name = "korisnik")
+	@JoinColumn(nullable = false, name = "korisnikId")
 	private Korisnik korisnikClass;
 
 	public Long getId() {
