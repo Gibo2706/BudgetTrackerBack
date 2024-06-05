@@ -39,7 +39,7 @@ public class Token implements Serializable{
 	private Long korisnikId;
 
 	@OneToOne(targetEntity = Korisnik.class, fetch = FetchType.EAGER)
-	@JoinColumn(nullable = false, name = "korisnikId")
+	@JoinColumn(nullable = false, name = "korisnikId", insertable = false, updatable = false)
 	private Korisnik korisnikClass;
 
 	public Long getId() {
