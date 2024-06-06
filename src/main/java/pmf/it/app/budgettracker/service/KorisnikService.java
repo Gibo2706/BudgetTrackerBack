@@ -12,6 +12,7 @@ import jakarta.transaction.Transactional;
 import jakarta.xml.bind.DatatypeConverter;
 import model.Korisnik;
 import model.Token;
+import pmf.it.app.budgettracker.dto.KorisnikDTO;
 import pmf.it.app.budgettracker.dto.RegisterDTO;
 import pmf.it.app.budgettracker.dto.ResponseDTO;
 import pmf.it.app.budgettracker.interceptor.TokenHolder;
@@ -85,5 +86,21 @@ public class KorisnikService {
 	
 	public Korisnik findByUsername(String username) {
 		return kr.findByUsername(username);
+	}
+	
+	public KorisnikDTO findUser(String username) {
+		Korisnik k = findByUsername(username);
+		return new KorisnikDTO(k.getUsername(), k.getEmail(), k.getName(), k.getLastname());
+	}
+	
+	public KorisnikDTO updateUser(String username, KorisnikDTO dto) {
+		Korisnik k = findByUsername(username);
+		k.setEmail(dto.email());
+		k.setLastname(dto.surname());
+		k.setName(dto.name());
+		k.setUsername(dto.username());
+		k = kr.save(k);
+		return new KorisnikDTO(k.getUsername(), k.getEmail(), k.getName(), k.getLastname());
+		
 	}
 }

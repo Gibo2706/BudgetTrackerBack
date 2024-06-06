@@ -1,5 +1,6 @@
 package pmf.it.app.budgettracker.control;
 
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +21,11 @@ public class AuthController {
 	@Autowired
 	private KorisnikService ks;
 	
+	private static final Logger log = Logger.getLogger(PlanController.class.getName());
+	
 	@GetMapping("/login")
 	public ResponseEntity<ResponseDTO> logIn(String username, String password){
+		log.debug("Login user: " + username);
 		return ResponseEntity.ok(ks.logIn(username, password));
 	}
 	

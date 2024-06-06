@@ -46,14 +46,7 @@ public class PlanController {
 	public ResponseEntity<List<PlanDTO>> getAllByUser(@PathVariable("id") Long id) {
 		List<PlanDTO> plans = planService.findAllByUser(id);
 		log.info("Getting all plans for user with id: " + id);
-		if(plans.size() == 0) {
-			log.error("No plans found");
-            return ResponseEntity.badRequest().body(null);
-		} else {
-			log.info("Plans found - "); 
-			plans.forEach(p -> log.info(p.toString()));
-			return ResponseEntity.ok(plans);
-		}
+		return ResponseEntity.ok(plans);
 	}
 	
 	@PutMapping("addTrosak")
