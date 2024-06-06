@@ -25,7 +25,6 @@ public class TokenInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		String url = request.getRequestURI();
-		System.out.println(url);
 		if(url.contains("auth") || url.contains("api") || url.contains("swagger")) return true;
 		String token = request.getHeader("token");
 		tokenHolder.setToken(token);

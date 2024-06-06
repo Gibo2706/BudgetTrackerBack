@@ -53,7 +53,7 @@ public class KorisnikService {
 		token.setToken(UUID.randomUUID().toString());
 		ts.saveConfirmationToken(token);
 		
-		return new ResponseDTO("Successfully", token.getToken());
+		return new ResponseDTO("Successfully", token.getToken() + "|" + k.getId());
 	}
 
 	private String hashPassword(String encPass) throws NoSuchAlgorithmException {
@@ -80,7 +80,7 @@ public class KorisnikService {
             throw new RuntimeException("token is not present");
         }
 		
-		return new ResponseDTO("Successfully", token.getToken());
+		return new ResponseDTO("Successfully", token.getToken() + "|" + k.getId());
 	}
 	
 	public Korisnik findByUsername(String username) {
