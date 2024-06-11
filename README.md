@@ -62,12 +62,10 @@ To set up and run this project locally, follow these steps:
 
 The backend provides various API endpoints to interact with the BudgetTracker mobile application. Here are some example endpoints:
 
-    POST /api/auth/signup: Register a new user
-    POST /api/auth/login: Authenticate a user
-    GET /plan/all: Retrieve all budgets for the authenticated user
+    POST /auth/register: Register a new user
+    GET /auth/login: Authenticate a user
+    GET /plan/allByUser/{id}: Retrieve all budgets for the authenticated user
     POST /plan/add: Create a new budget plan
-    PUT /plan/update/{id}: Update an existing budget plan
-    DELETE /plan/delete/{id}: Delete a budget plan
 
 For detailed API documentation, refer to the Swagger documentation provided in the project.
 ## Contributing
